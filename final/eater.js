@@ -1,9 +1,15 @@
-class Eater {
+class X {
     constructor(x, y, index) {
         this.x = x;
         this.y = y;
-        this.energy = 1
         this.index = index;
+    }
+}
+
+class Eater extends X {
+    constructor(x, y, index) {
+        super(x, y, index)
+        this.energy = 1;
         this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
@@ -17,7 +23,7 @@ class Eater {
     }
 
 
-    getNewCordinates(){
+    getNewCordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
@@ -87,7 +93,7 @@ class Eater {
         let newCell = random(emptyCells);
 
         if (newCell) {
-            if(this.energy<=10){
+            if (this.energy <= 10) {
                 this.energy++;
             }
             let newX = newCell[0];
@@ -108,34 +114,34 @@ class Eater {
                     break;
                 }
             }
-            
+
         }
-        else{
+        else {
             this.move()
         }
     }
 
-    
-    die(){
-        if (this.energy <= 0) {
-         matrix[this.y][this.x] = 0;        
-            for (var i in eaterArr) {
-             if (this.x == eaterArr[i].x && this.y == eaterArr[i].y) {
-                  eaterArr.splice(i, 1);
-                  break;
-             }
-            }
-    
-         }
-    }
-    
-    
 
-    move() { 
+    die() {
+        if (this.energy <= 0) {
+            matrix[this.y][this.x] = 0;
+            for (var i in eaterArr) {
+                if (this.x == eaterArr[i].x && this.y == eaterArr[i].y) {
+                    eaterArr.splice(i, 1);
+                    break;
+                }
+            }
+
+        }
+    }
+
+
+
+    move() {
         let emptyCells = this.chooseCell(0);
         let newCell = random(emptyCells);
         this.energy--;
-        if (newCell && this.energy>=0) {
+        if (newCell && this.energy >= 0) {
             let newX = newCell[0];
             let newY = newCell[1];
             matrix[newY][newX] = 3;
@@ -145,3 +151,4 @@ class Eater {
         }
     }
 }
+

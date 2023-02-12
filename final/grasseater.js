@@ -1,9 +1,15 @@
-class GrassEater {
+class X{
     constructor(x, y, index) {
         this.x = x;
         this.y = y;
-        this.energy = 15;
         this.index = index;
+    }
+}
+
+class GrassEater extends X {
+    constructor(x, y, index) {
+        super(x,y,index)
+        this.energy = 15;
         this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],

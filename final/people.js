@@ -1,10 +1,16 @@
-class People{
-    constructor(x, y, index){
+class X {
+    constructor(x, y, index) {
         this.x = x;
         this.y = y;
         this.index = index;
+    }
+}
+
+class People extends X {
+    constructor(x, y, index) {
+        super(x, y, index)
         this.energy = 4;
-        this.directions =[
+        this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
             [this.x + 1, this.y - 1],
@@ -13,8 +19,10 @@ class People{
             [this.x - 1, this.y + 1],
             [this.x, this.y + 1],
             [this.x + 1, this.y + 1]
-        ] 
+        ];
     }
+
+
     getNewCordinates(){
         this.directions = [
             [this.x - 1, this.y - 1],
@@ -25,7 +33,7 @@ class People{
             [this.x - 1, this.y + 1],
             [this.x, this.y + 1],
             [this.x + 1, this.y + 1]
-    ];
+        ];
     }
 
     chooseCell(character) {
@@ -93,7 +101,7 @@ class People{
         let newCell = random(emptyCells);
 
         if (newCell) {
-            if(this.energy<=10){
+            if (this.energy <= 10) {
                 this.energy++;
             }
             let newX = newCell[0];
@@ -115,14 +123,14 @@ class People{
                 }
             }
         }
-        else{
+        else {
             this.move()
         }
     }
 
     die() {
         if (this.energy <= 0) {
-            matrix[this.y][this.x] = 0;        
+            matrix[this.y][this.x] = 0;
             for (var i in peopleArr) {
                 if (this.x == peopleArr[i].x && this.y == peopleArr[i].y) {
                     peopleArr.splice(i, 1);
@@ -133,7 +141,7 @@ class People{
         }
     }
 
-    move() { 
+    move() {
         let greyCells = this.chooseCell(0);
         let greenCells = this.chooseCell(1)
         let yellowCells = this.chooseCell(2);
@@ -141,7 +149,7 @@ class People{
         let emptyCells = [...greyCells, ...greenCells, ...yellowCells, ...redCells]
         let newCell = random(emptyCells);
         this.energy--;
-        if (newCell && this.energy>=0) {
+        if (newCell && this.energy >= 0) {
             let newX = newCell[0];
             let newY = newCell[1];
             matrix[newY][newX] = 4;

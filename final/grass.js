@@ -1,7 +1,14 @@
-class Grass {
+class X {
     constructor(x, y, index) {
         this.x = x;
         this.y = y;
+        this.index = index;
+    }
+}
+
+class Grass {
+    constructor(x, y, index) {
+       super      
         this.index = index;
         this.multiply = 0;
 
